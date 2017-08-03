@@ -13,7 +13,7 @@ class PostFix
         for (int i = 0; i < inExp.length(); i++)
         {
             char check = inExp.charAt(i);
-            if (Character.isDigit(check))
+            if (Character.isDigit(check) || check == '.')
             {
                 if (lastscob == true)
                 {
@@ -31,7 +31,7 @@ class PostFix
                 }
                 else
                 {
-                    if (finale.isEmpty() || !Character.isDigit(finale.charAt(finale.length() - 1)))
+                    if (finale.isEmpty() || !Character.isDigit(finale.charAt(finale.length() - 1)) && !(finale.charAt(finale.length() - 1)=='.'))
                         finale += str;
                     else
                         finale += "," + str;
@@ -79,7 +79,7 @@ class PostFix
                         isGood = false;
                         break;
                     }
-                    if (Character.isDigit(finale.charAt(finale.length() - 1)))
+                    if (Character.isDigit(finale.charAt(finale.length() - 1))||finale.charAt(finale.length() - 1)=='.')
                         finale += "," + str;
                     else
                         finale += str;
@@ -109,7 +109,7 @@ class PostFix
                     isGood = false;
                     break;
                 }
-                if (Character.isDigit(finale.charAt(finale.length() - 1)))
+                if (Character.isDigit(finale.charAt(finale.length() - 1)) || finale.charAt(finale.length() - 1) == '.')
                     finale += "," + str;
                 else
                     finale += str;

@@ -28,7 +28,7 @@ class LinkList
         }
     }
     
-    public void insertFirst(int inNum)
+    public void insertFirst(double inNum)
     {
         if (!this.isEmpty())
         {

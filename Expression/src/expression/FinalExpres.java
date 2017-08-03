@@ -2,7 +2,7 @@ package expression;
 
 class FinalExpres
 {
-    private int defin;
+    private double defin;
 
     public FinalExpres(String inStr)
     {
@@ -11,23 +11,23 @@ class FinalExpres
         for (int i = 0; i < inStr.length(); i++)
         {
             char symb = inStr.charAt(i);
-            if (Character.isDigit(symb))
+            if (Character.isDigit(symb) || symb=='.')
             {
                 numb += symb;
                 continue;
             }
             else if (symb == ',')
             {
-                temp.insertFirst(Integer.parseInt(numb));
+                temp.insertFirst(Double.parseDouble(numb));
                 numb = "";
                 continue;
             }
-            if(!numb.isEmpty())
+            if (!numb.isEmpty())
             {
-                temp.insertFirst(Integer.parseInt(numb));
-                numb = "";                
+                temp.insertFirst(Double.parseDouble(numb));
+                numb = "";
             }
-            int first, second, answer=0;
+            double first, second, answer = 0;
             second = temp.popFirst().getNum();
             first = temp.popFirst().getNum();
             switch (symb)
@@ -47,12 +47,12 @@ class FinalExpres
             }
             temp.insertFirst(answer);
         }
-        defin=temp.popFirst().getNum();
+        defin = temp.popFirst().getNum();
     }
-    
-    public int getAnswer()
+
+    public double getAnswer()
     {
         return defin;
     }
-    
+
 }
