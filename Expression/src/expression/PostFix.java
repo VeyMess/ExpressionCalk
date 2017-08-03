@@ -24,7 +24,7 @@ class PostFix
             }
             else if (check == '+' || check == '-' || check == '*' || check == '/')
             {
-                if (str.isEmpty() && lastscob == false)
+                if (str.isEmpty() && lastscob == false || i == inExp.length()-1)
                 {
                     isGood = false;
                     break;
