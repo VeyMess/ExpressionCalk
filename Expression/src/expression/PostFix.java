@@ -10,28 +10,39 @@ class PostFix
         String str = "";
         LinkList temp = new LinkList();
         boolean lastscob = false;
+        boolean dotCheck = false;
         for (int i = 0; i < inExp.length(); i++)
         {
             char check = inExp.charAt(i);
             if (Character.isDigit(check) || check == '.')
             {
-                if (lastscob == true)
+                if (lastscob == true || check == '.' && dotCheck == true)
                 {
                     isGood = false;
                     break;
                 }
+                if (check == '.')
+                {
+                    dotCheck = true;
+                    if (str.isEmpty())
+                        str += '0';
+                }
+                if(check=='0' && str.isEmpty())
+                    continue;
                 str += check;
             }
             else if (check == '+' || check == '-' || check == '*' || check == '/')
             {
-                if (str.isEmpty() && lastscob == false || i == inExp.length()-1)
+                if (str.isEmpty() && lastscob == false || i == inExp.length() - 1)
                 {
                     isGood = false;
                     break;
                 }
                 else
                 {
-                    if (finale.isEmpty() || !Character.isDigit(finale.charAt(finale.length() - 1)) && !(finale.charAt(finale.length() - 1)=='.'))
+                    if (finale.isEmpty() ||
+                        !Character.isDigit(finale.charAt(finale.length() - 1)) &&
+                        !(finale.charAt(finale.length() - 1) == '.'))
                         finale += str;
                     else
                         finale += "," + str;
@@ -52,6 +63,7 @@ class PostFix
                     }
                 }
                 lastscob = false;
+                dotCheck = false;
             }
             else if (check == '(')
             {
@@ -74,12 +86,13 @@ class PostFix
                 }
                 else
                 {
-                    if (finale.isEmpty()||temp.peakFirst().getCh()=='(')
+                    if (finale.isEmpty() || temp.peakFirst().getCh() == '(')
                     {
                         isGood = false;
                         break;
                     }
-                    if (Character.isDigit(finale.charAt(finale.length() - 1))||finale.charAt(finale.length() - 1)=='.')
+                    if (Character.isDigit(finale.charAt(finale.length() - 1)) ||
+                        finale.charAt(finale.length() - 1) == '.')
                         finale += "," + str;
                     else
                         finale += str;
@@ -99,6 +112,7 @@ class PostFix
                     if (i == inExp.length() - 1 && temp.isEmpty())
                         break;
                     lastscob = true;
+                    dotCheck = false;
                 }
             }
 
