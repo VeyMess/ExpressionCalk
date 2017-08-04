@@ -118,7 +118,7 @@ class PostFix
 
             if (i == inExp.length() - 1)
             {
-                if (temp.isEmpty() || temp.peakFirst().getCh() == '(' || str == ".")
+                if (temp.isEmpty() || temp.peakFirst().getCh() == '(' ||  str == ".")
                 {
                     isGood = false;
                     break;
